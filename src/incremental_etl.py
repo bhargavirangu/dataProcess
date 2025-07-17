@@ -4,6 +4,8 @@ from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 import logging
 
+# COMPARED DATA IN POSTGRACE SALES TABLE WITH DAILY FEED CSV FILES READ THE CSV FILES AND REMOVED NULL OR BAD DATA THEN INSERTED NEW RECORDS FROM MULTIPLE CSV FILES LATER MOVED DAILY FEED  CSV FILES TO PROCESSED FOLDER FOR BETTER MANAGEMENT.
+
 # Load DB credentials
 load_dotenv()
 db_url = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
@@ -48,7 +50,7 @@ print(f"Existing IDs in database: {existing_ids}")
 os.makedirs(data_folder, exist_ok=True)
 os.makedirs(processed_folder, exist_ok=True)
 
-
+print(f"file name: {data_folder}")
 # Process each CSV file
 for filename in os.listdir(data_folder):
     if filename.endswith('.csv'):
